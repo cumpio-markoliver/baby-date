@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Invitation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #fff0f5 0%, #ffe4f0 25%, #fff5f7 50%, #ffe9f3 75%, #fff0f5 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Floating hearts background */
+        .heart-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0;
+            animation: floatSpicy 12s infinite ease-in-out;
+            filter: drop-shadow(0 2px 8px rgba(255, 182, 193, 0.3));
+            transform-origin: center;
+        }
+
+        .floating-heart::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffb3d9 0%, #ffc9e3 100%);
+            clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
+            transform: scale(2);
+        }
+
+        @keyframes floatSpicy {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            5% {
+                opacity: 0.6;
+            }
+            25% {
+                transform: translateY(75vh) translateX(50px) rotate(90deg) scale(1.2);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(50vh) translateX(-80px) rotate(180deg) scale(0.8);
+                opacity: 0.6;
+            }
+            75% {
+                transform: translateY(25vh) translateX(100px) rotate(270deg) scale(1.1);
+                opacity: 0.7;
+            }
+            95% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(-50px) rotate(360deg) scale(0.6);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            padding: 40px 25px;
+            border-radius: 25px;
+            box-shadow: 
+                0 8px 32px 0 rgba(255, 182, 193, 0.3),
+                0 2px 8px 0 rgba(255, 182, 193, 0.15);
+            max-width: 450px;
+            width: 92%;
+            position: relative;
+            z-index: 1;
+            animation: slideIn 0.8s ease-out;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .heart-icon {
+            text-align: center;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        .heart-icon svg {
+            width: 55px;
+            height: 55px;
+            fill: url(#heartGradient);
+            filter: drop-shadow(0 4px 12px rgba(255, 105, 180, 0.3));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            10%, 30% {
+                transform: scale(1.1);
+            }
+            20%, 40% {
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: #e91e63;
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #f06292;
+            font-size: 15px;
+            margin-bottom: 25px;
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ec407a;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            border-radius: 15px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(10px);
+            color: #ad1457;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(173, 20, 87, 0.5);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.2);
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #f48fb1 0%, #f8bbd0 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(244, 143, 177, 0.3);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .submit-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(244, 143, 177, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .submit-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .success-message {
+            display: none;
+            padding: 25px 20px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            animation: slideIn 0.5s ease-out;
+            box-shadow: 
+                0 8px 32px 0 rgba(255, 182, 193, 0.3),
+                0 2px 8px 0 rgba(255, 182, 193, 0.15);
+            max-width: 450px;
+            width: 92%;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .receipt-header {
+            text-align: center;
+            border-bottom: 2px dashed rgba(244, 143, 177, 0.4);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .receipt-header h3 {
+            color: #e91e63;
+            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+        }
+
+        .receipt-header .subtitle {
+            text-align: center;
+            color: #f06292;
+            font-size: 15px;
+            margin-bottom: 0;
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .receipt-body {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .receipt-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(244, 143, 177, 0.2);
+        }
+
+        .receipt-label {
+            color: #ec407a;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .receipt-value {
+            color: #ad1457;
+            font-size: 14px;
+            text-align: left;
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+
+        .receipt-footer {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 2px dashed rgba(244, 143, 177, 0.4);
+        }
+
+        .receipt-footer p {
+            color: #f06292;
+            font-size: 15px;
+            margin: 0;
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Decorative elements */
+        .top-left { top: 20px; left: 20px; }
+        .top-right { top: 20px; right: 20px; }
+        .bottom-left { bottom: 20px; left: 20px; }
+        .bottom-right { bottom: 20px; right: 20px; }
+
+        /* Desktop Enhancement */
+        @media (min-width: 769px) {
+            .container {
+                padding: 50px 40px;
+                max-width: 500px;
+            }
+
+            .success-message {
+                padding: 30px;
+                max-width: 500px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+
+            .heart-icon svg {
+                width: 70px;
+                height: 70px;
+            }
+
+            .form-group {
+                margin-bottom: 25px;
+            }
+
+            label {
+                font-size: 14px;
+            }
+
+            input, select, textarea {
+                font-size: 15px;
+            }
+
+            .submit-btn {
+                font-size: 18px;
+            }
+
+            .receipt-header {
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+            }
+
+            .receipt-header h3 {
+                font-size: 36px;
+            }
+
+            .receipt-header .subtitle {
+                font-size: 16px;
+            }
+
+            .receipt-body {
+                margin-bottom: 20px;
+            }
+
+            .receipt-item {
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 0;
+            }
+
+            .receipt-label {
+                font-size: 14px;
+            }
+
+            .receipt-value {
+                font-size: 14px;
+                text-align: right;
+                max-width: 60%;
+            }
+
+            .receipt-footer {
+                padding-top: 20px;
+            }
+
+            .receipt-footer p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-bg" id="heartBg"></div>
+    
+    <div class="container">
+        <div class="heart-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#f48fb1;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#f8bbd0;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+        <h1>Be My Valentine?</h1>
+        <p class="subtitle">Let's make this day special together</p>
+
+        <form id="valentineForm">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Preferred Date</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="color">What Color Should We Wear?</label>
+                <select id="color" name="color" required>
+                    <option value="">Choose a color...</option>
+                    <option value="red">❤️ Red - Classic Romance</option>
+                    <option value="pink">💕 Pink - Sweet & Lovely</option>
+                    <option value="white">🤍 White - Pure & Elegant</option>
+                    <option value="black">🖤 Black - Sophisticated</option>
+                    <option value="purple">💜 Purple - Royal & Romantic</option>
+                    <option value="blue">💙 Blue - Calm & Serene</option>
+                    <option value="burgundy">🍷 Burgundy - Deep Passion</option>
+                    <option value="pastel">🌸 Pastel - Soft & Dreamy</option>
+                    <option value="surprise">✨ Surprise Me!</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="food">What Would You Like to Eat?</label>
+                <select id="food" name="food" required>
+                    <option value="">Choose your favorite...</option>
+                    <option value="italian">🍝 Italian Cuisine</option>
+                    <option value="french">🥐 French Cuisine</option>
+                    <option value="japanese">🍣 Japanese Cuisine</option>
+                    <option value="mexican">🌮 Mexican Cuisine</option>
+                    <option value="chinese">🥟 Chinese Cuisine</option>
+                    <option value="steakhouse">🥩 Steakhouse</option>
+                    <option value="seafood">🦞 Seafood</option>
+                    <option value="dessert">🍰 Dessert & Sweets</option>
+                    <option value="homemade">🏡 Homemade Dinner</option>
+                    <option value="surprise">✨ Surprise Me!</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Special Message (Optional)</label>
+                <textarea id="message" name="message" placeholder="Share your thoughts..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <span>
+                    Send My Heart
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </span>
+            </button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+            <div class="receipt-header">
+                <div class="heart-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="heartGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#f48fb1;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#f8bbd0;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="url(#heartGradient2)"/>
+                    </svg>
+                </div>
+                <h3>Date Confirmed!</h3>
+                <p class="subtitle">Take a screenshot as proof</p>
+            </div>
+            
+            <div class="receipt-body">
+                <div class="receipt-item">
+                    <span class="receipt-label">Name:</span>
+                    <span class="receipt-value" id="receiptName"></span>
+                </div>
+                <div class="receipt-item">
+                    <span class="receipt-label">Date:</span>
+                    <span class="receipt-value" id="receiptDate"></span>
+                </div>
+                <div class="receipt-item">
+                    <span class="receipt-label">Color to Wear:</span>
+                    <span class="receipt-value" id="receiptColor"></span>
+                </div>
+                <div class="receipt-item">
+                    <span class="receipt-label">Cuisine:</span>
+                    <span class="receipt-value" id="receiptFood"></span>
+                </div>
+                <div class="receipt-item" id="messageItem" style="display: none;">
+                    <span class="receipt-label">Message:</span>
+                    <span class="receipt-value" id="receiptMessage"></span>
+                </div>
+            </div>
+            
+            <div class="receipt-footer">
+                <p>Can't wait to spend this special day with you!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createFloatingHearts() {
+            const heartBg = document.getElementById('heartBg');
+            
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 12 + 's';
+                heart.style.animationDuration = (10 + Math.random() * 8) + 's';
+                const size = 40 + Math.random() * 30;
+                heart.style.width = size + 'px';
+                heart.style.height = size + 'px';
+                heartBg.appendChild(heart);
+            }
+        }
+
+        createFloatingHearts();
+
+        // Form submission
+        document.getElementById('valentineForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const successMessage = document.getElementById('successMessage');
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const date = document.getElementById('date').value;
+            const color = document.getElementById('color');
+            const colorText = color.options[color.selectedIndex].text;
+            const food = document.getElementById('food');
+            const foodText = food.options[food.selectedIndex].text;
+            const message = document.getElementById('message').value;
+            
+            // Populate receipt
+            document.getElementById('receiptName').textContent = name;
+            document.getElementById('receiptDate').textContent = new Date(date).toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            document.getElementById('receiptColor').textContent = colorText;
+            document.getElementById('receiptFood').textContent = foodText;
+            
+            if (message.trim()) {
+                document.getElementById('messageItem').style.display = 'flex';
+                document.getElementById('receiptMessage').textContent = message;
+            }
+            
+            // Simple animation
+            form.style.opacity = '0';
+            form.style.transform = 'scale(0.9)';
+            
+            setTimeout(() => {
+                form.style.display = 'none';
+                successMessage.classList.add('show');
+            }, 300);
+
+            // In a real application, you would send this data to a server
+            console.log({
+                name: name,
+                date: date,
+                color: color.value,
+                food: food.value,
+                message: message
+            });
+        });
+
+        // Add sparkle effect on input focus
+        const inputs = document.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.transition = 'all 0.3s ease';
+            });
+        });
+    </script>
+</body>
+</html>

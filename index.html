@@ -100,13 +100,13 @@
             background: rgba(255, 255, 255, 0.45);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
-            padding: 40px 25px;
+            padding: 45px 30px;
             border-radius: 25px;
             box-shadow: 
                 0 8px 32px 0 rgba(255, 182, 193, 0.3),
                 0 2px 8px 0 rgba(255, 182, 193, 0.15);
-            max-width: 450px;
-            width: 92%;
+            max-width: 480px;
+            width: 94%;
             position: relative;
             z-index: 1;
             animation: slideIn 0.8s ease-out;
@@ -126,15 +126,15 @@
 
         .heart-icon {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             display: flex;
             justify-content: center;
             animation: heartbeat 1.5s infinite;
         }
 
         .heart-icon svg {
-            width: 55px;
-            height: 55px;
+            width: 65px;
+            height: 65px;
             fill: url(#heartGradient);
             filter: drop-shadow(0 4px 12px rgba(255, 105, 180, 0.3));
         }
@@ -154,8 +154,8 @@
         h1 {
             text-align: center;
             color: #e91e63;
-            font-size: 28px;
-            margin-bottom: 10px;
+            font-size: 32px;
+            margin-bottom: 12px;
             font-weight: 500;
             letter-spacing: 1px;
             text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
@@ -164,8 +164,8 @@
         .subtitle {
             text-align: center;
             color: #f06292;
-            font-size: 15px;
-            margin-bottom: 25px;
+            font-size: 17px;
+            margin-bottom: 28px;
             font-style: italic;
             font-weight: 300;
             letter-spacing: 0.5px;
@@ -173,7 +173,7 @@
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             animation: fadeInUp 0.6s ease-out forwards;
             opacity: 0;
         }
@@ -183,6 +183,8 @@
         .form-group:nth-child(3) { animation-delay: 0.3s; }
         .form-group:nth-child(4) { animation-delay: 0.4s; }
         .form-group:nth-child(5) { animation-delay: 0.5s; }
+        .form-group:nth-child(6) { animation-delay: 0.6s; }
+        .form-group:nth-child(7) { animation-delay: 0.7s; }
 
         @keyframes fadeInUp {
             from {
@@ -197,20 +199,20 @@
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: #ec407a;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 15px;
             letter-spacing: 0.5px;
             text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
         }
 
         input, select, textarea {
             width: 100%;
-            padding: 14px 15px;
+            padding: 16px 18px;
             border: 1.5px solid rgba(255, 255, 255, 0.6);
             border-radius: 15px;
-            font-size: 16px;
+            font-size: 17px;
             font-family: inherit;
             transition: all 0.3s ease;
             background: rgba(255, 255, 255, 0.65);
@@ -237,18 +239,137 @@
             min-height: 100px;
         }
 
+        /* Custom Dropdown Styles */
+        .custom-select {
+            position: relative;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .custom-select select {
+            display: none;
+        }
+
+        .select-selected {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(10px);
+            padding: 16px 18px;
+            padding-right: 45px;
+            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            border-radius: 15px;
+            cursor: pointer;
+            color: #ad1457;
+            font-size: 17px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .select-selected:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 18px;
+            width: 0;
+            height: 0;
+            border: 6px solid transparent;
+            border-color: #ad1457 transparent transparent transparent;
+            transform: translateY(-25%);
+            transition: all 0.3s ease;
+        }
+
+        .select-selected.select-arrow-active:after {
+            border-color: transparent transparent #ad1457 transparent;
+            transform: translateY(-75%);
+        }
+
+        .select-items {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            top: calc(100% + 5px);
+            left: 0;
+            right: 0;
+            z-index: 999;
+            border-radius: 15px;
+            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 24px rgba(255, 105, 180, 0.3);
+            max-height: 280px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .select-hide {
+            display: none;
+        }
+
+        .select-items div {
+            color: #ad1457;
+            padding: 14px 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(244, 143, 177, 0.1);
+        }
+
+        .select-items div:last-child {
+            border-bottom: none;
+        }
+
+        .select-items div:hover,
+        .same-as-selected {
+            background: rgba(244, 143, 177, 0.25);
+        }
+
+        .select-items div svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .select-selected svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .select-placeholder {
+            color: rgba(173, 20, 87, 0.5);
+        }
+
+        /* Ensure dropdowns appear above other elements */
+        .form-group {
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group:has(.select-arrow-active) {
+            z-index: 100;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
         .submit-btn {
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             background: linear-gradient(135deg, #f48fb1 0%, #f8bbd0 100%);
             color: white;
             border: none;
             border-radius: 20px;
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 10px;
+            margin-top: 12px;
             position: relative;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(244, 143, 177, 0.3);
@@ -300,7 +421,7 @@
 
         .success-message {
             display: none;
-            padding: 25px 20px;
+            padding: 30px 25px;
             background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -310,8 +431,8 @@
             box-shadow: 
                 0 8px 32px 0 rgba(255, 182, 193, 0.3),
                 0 2px 8px 0 rgba(255, 182, 193, 0.15);
-            max-width: 450px;
-            width: 92%;
+            max-width: 480px;
+            width: 94%;
         }
 
         .success-message.show {
@@ -321,14 +442,14 @@
         .receipt-header {
             text-align: center;
             border-bottom: 2px dashed rgba(244, 143, 177, 0.4);
-            padding-bottom: 15px;
-            margin-bottom: 15px;
+            padding-bottom: 18px;
+            margin-bottom: 18px;
         }
 
         .receipt-header h3 {
             color: #e91e63;
             margin-bottom: 10px;
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 500;
             letter-spacing: 1px;
             text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
@@ -337,7 +458,7 @@
         .receipt-header .subtitle {
             text-align: center;
             color: #f06292;
-            font-size: 15px;
+            font-size: 17px;
             margin-bottom: 0;
             font-style: italic;
             font-weight: 300;
@@ -347,27 +468,27 @@
 
         .receipt-body {
             text-align: left;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         .receipt-item {
             display: flex;
             flex-direction: column;
-            gap: 4px;
-            padding: 10px 0;
+            gap: 5px;
+            padding: 12px 0;
             border-bottom: 1px solid rgba(244, 143, 177, 0.2);
         }
 
         .receipt-label {
             color: #ec407a;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 15px;
             letter-spacing: 0.5px;
         }
 
         .receipt-value {
             color: #ad1457;
-            font-size: 14px;
+            font-size: 16px;
             text-align: left;
             max-width: 100%;
             word-wrap: break-word;
@@ -375,13 +496,13 @@
 
         .receipt-footer {
             text-align: center;
-            padding-top: 15px;
+            padding-top: 18px;
             border-top: 2px dashed rgba(244, 143, 177, 0.4);
         }
 
         .receipt-footer p {
             color: #f06292;
-            font-size: 15px;
+            font-size: 17px;
             margin: 0;
             font-style: italic;
             font-weight: 300;
@@ -505,6 +626,17 @@
 
         <form id="valentineForm">
             <div class="form-group">
+                <label for="response">Will You Be My Valentine?</label>
+                <div class="custom-select">
+                    <select id="response" name="response" required>
+                        <option value="">Choose your answer...</option>
+                        <option value="yes" data-icon="heart">Yes!</option>
+                        <option value="no" data-icon="broken-heart">No, sorry</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="name">Your Name</label>
                 <input type="text" id="name" name="name" placeholder="Enter your name" required>
             </div>
@@ -516,35 +648,57 @@
 
             <div class="form-group">
                 <label for="color">What Color Should We Wear?</label>
-                <select id="color" name="color" required>
-                    <option value="">Choose a color...</option>
-                    <option value="red">❤️ Red - Classic Romance</option>
-                    <option value="pink">💕 Pink - Sweet & Lovely</option>
-                    <option value="white">🤍 White - Pure & Elegant</option>
-                    <option value="black">🖤 Black - Sophisticated</option>
-                    <option value="purple">💜 Purple - Royal & Romantic</option>
-                    <option value="blue">💙 Blue - Calm & Serene</option>
-                    <option value="burgundy">🍷 Burgundy - Deep Passion</option>
-                    <option value="pastel">🌸 Pastel - Soft & Dreamy</option>
-                    <option value="surprise">✨ Surprise Me!</option>
-                </select>
+                <div class="custom-select">
+                    <select id="color" name="color" required>
+                        <option value="">Choose a color...</option>
+                        <option value="red" data-icon="palette">Red - Classic Romance</option>
+                        <option value="pink" data-icon="palette">Pink - Sweet & Lovely</option>
+                        <option value="white" data-icon="palette">White - Pure & Elegant</option>
+                        <option value="black" data-icon="palette">Black - Sophisticated</option>
+                        <option value="purple" data-icon="palette">Purple - Royal & Romantic</option>
+                        <option value="blue" data-icon="palette">Blue - Calm & Serene</option>
+                        <option value="burgundy" data-icon="palette">Burgundy - Deep Passion</option>
+                        <option value="pastel" data-icon="palette">Pastel - Soft & Dreamy</option>
+                        <option value="surprise" data-icon="sparkles">Surprise Me!</option>
+                    </select>
+                </div>
             </div>
 
             <div class="form-group">
                 <label for="food">What Would You Like to Eat?</label>
-                <select id="food" name="food" required>
-                    <option value="">Choose your favorite...</option>
-                    <option value="italian">🍝 Italian Cuisine</option>
-                    <option value="french">🥐 French Cuisine</option>
-                    <option value="japanese">🍣 Japanese Cuisine</option>
-                    <option value="mexican">🌮 Mexican Cuisine</option>
-                    <option value="chinese">🥟 Chinese Cuisine</option>
-                    <option value="steakhouse">🥩 Steakhouse</option>
-                    <option value="seafood">🦞 Seafood</option>
-                    <option value="dessert">🍰 Dessert & Sweets</option>
-                    <option value="homemade">🏡 Homemade Dinner</option>
-                    <option value="surprise">✨ Surprise Me!</option>
-                </select>
+                <div class="custom-select">
+                    <select id="food" name="food" required>
+                        <option value="">Choose your favorite...</option>
+                        <option value="italian" data-icon="utensils">Italian Cuisine</option>
+                        <option value="french" data-icon="utensils">French Cuisine</option>
+                        <option value="japanese" data-icon="utensils">Japanese Cuisine</option>
+                        <option value="mexican" data-icon="utensils">Mexican Cuisine</option>
+                        <option value="chinese" data-icon="utensils">Chinese Cuisine</option>
+                        <option value="steakhouse" data-icon="utensils">Steakhouse</option>
+                        <option value="seafood" data-icon="utensils">Seafood</option>
+                        <option value="dessert" data-icon="utensils">Dessert & Sweets</option>
+                        <option value="homemade" data-icon="utensils">Homemade Dinner</option>
+                        <option value="surprise" data-icon="sparkles">Surprise Me!</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="drink">What Would You Like to Drink?</label>
+                <div class="custom-select">
+                    <select id="drink" name="drink" required>
+                        <option value="">Choose your beverage...</option>
+                        <option value="wine" data-icon="glass">Wine</option>
+                        <option value="champagne" data-icon="glass">Champagne</option>
+                        <option value="cocktails" data-icon="glass">Cocktails</option>
+                        <option value="mocktails" data-icon="glass">Mocktails</option>
+                        <option value="coffee" data-icon="coffee">Coffee</option>
+                        <option value="tea" data-icon="coffee">Tea</option>
+                        <option value="juice" data-icon="glass">Fresh Juice</option>
+                        <option value="water" data-icon="glass">Water</option>
+                        <option value="surprise" data-icon="sparkles">Surprise Me!</option>
+                    </select>
+                </div>
             </div>
 
             <div class="form-group">
@@ -554,7 +708,7 @@
 
             <button type="submit" class="submit-btn">
                 <span>
-                    Send My Heart
+                    Send
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                     </svg>
@@ -581,6 +735,10 @@
             
             <div class="receipt-body">
                 <div class="receipt-item">
+                    <span class="receipt-label">Response:</span>
+                    <span class="receipt-value" id="receiptResponse"></span>
+                </div>
+                <div class="receipt-item">
                     <span class="receipt-label">Name:</span>
                     <span class="receipt-value" id="receiptName"></span>
                 </div>
@@ -593,8 +751,12 @@
                     <span class="receipt-value" id="receiptColor"></span>
                 </div>
                 <div class="receipt-item">
-                    <span class="receipt-label">Cuisine:</span>
+                    <span class="receipt-label">Food:</span>
                     <span class="receipt-value" id="receiptFood"></span>
+                </div>
+                <div class="receipt-item">
+                    <span class="receipt-label">Drink:</span>
+                    <span class="receipt-value" id="receiptDrink"></span>
                 </div>
                 <div class="receipt-item" id="messageItem" style="display: none;">
                     <span class="receipt-label">Message:</span>
@@ -609,6 +771,98 @@
     </div>
 
     <script>
+        // SVG Icons
+        const icons = {
+            heart: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>',
+            'broken-heart': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/><line x1="6" y1="6" x2="18" y2="18" stroke="white" stroke-width="2"/></svg>',
+            palette: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c.93 0 1.5-.67 1.5-1.5 0-.4-.15-.77-.41-1.06-.25-.28-.39-.66-.39-1.06 0-.83.67-1.5 1.5-1.5H16c3.31 0 6-2.69 6-6 0-4.96-4.48-9-10-9zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 8 6.5 8 8 8.67 8 9.5 7.33 11 6.5 11zm3-4C8.67 7 8 6.33 8 5.5S8.67 4 9.5 4s1.5.67 1.5 1.5S10.33 7 9.5 7zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 4 14.5 4s1.5.67 1.5 1.5S15.33 7 14.5 7zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 8 17.5 8s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>',
+            utensils: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h2a2 2 0 002-2V2M7 2v20M21 15V2v0a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>',
+            glass: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l2 18h8l2-18H6z"/><path d="M5 3h14"/></svg>',
+            coffee: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><path d="M6 1v3M10 1v3M14 1v3"/></svg>',
+            sparkles: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L13.5 7.5L21 9L13.5 10.5L12 18L10.5 10.5L3 9L10.5 7.5L12 0Z"/><path d="M19 11L19.5 13.5L22 14L19.5 14.5L19 17L18.5 14.5L16 14L18.5 13.5L19 11Z"/><path d="M5 13L5.5 15.5L8 16L5.5 16.5L5 19L4.5 16.5L2 16L4.5 15.5L5 13Z"/></svg>'
+        };
+
+        // Initialize custom dropdowns
+        function initCustomSelects() {
+            const customSelects = document.querySelectorAll('.custom-select');
+            
+            customSelects.forEach(customSelect => {
+                const selectElement = customSelect.querySelector('select');
+                const selectedDiv = document.createElement('div');
+                selectedDiv.className = 'select-selected select-placeholder';
+                
+                // Set initial text
+                selectedDiv.innerHTML = selectElement.options[0].text;
+                customSelect.appendChild(selectedDiv);
+                
+                // Create items container
+                const itemsDiv = document.createElement('div');
+                itemsDiv.className = 'select-items select-hide';
+                
+                // Add options
+                for (let i = 1; i < selectElement.options.length; i++) {
+                    const option = selectElement.options[i];
+                    const optionDiv = document.createElement('div');
+                    const iconType = option.getAttribute('data-icon');
+                    
+                    if (iconType && icons[iconType]) {
+                        optionDiv.innerHTML = icons[iconType] + '<span>' + option.text + '</span>';
+                    } else {
+                        optionDiv.innerHTML = '<span>' + option.text + '</span>';
+                    }
+                    
+                    optionDiv.addEventListener('click', function() {
+                        // Update select value
+                        selectElement.selectedIndex = i;
+                        selectElement.dispatchEvent(new Event('change'));
+                        
+                        // Update display
+                        selectedDiv.innerHTML = this.innerHTML;
+                        selectedDiv.classList.remove('select-placeholder');
+                        
+                        // Update selected state
+                        const sameAsSelected = this.parentNode.querySelectorAll('.same-as-selected');
+                        sameAsSelected.forEach(el => el.classList.remove('same-as-selected'));
+                        this.classList.add('same-as-selected');
+                        
+                        // Close dropdown
+                        selectedDiv.click();
+                    });
+                    
+                    itemsDiv.appendChild(optionDiv);
+                }
+                
+                customSelect.appendChild(itemsDiv);
+                
+                // Toggle dropdown
+                selectedDiv.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    closeAllSelect(this);
+                    this.nextSibling.classList.toggle('select-hide');
+                    this.classList.toggle('select-arrow-active');
+                });
+            });
+        }
+
+        // Close all dropdowns except current
+        function closeAllSelect(element) {
+            const selectItems = document.querySelectorAll('.select-items');
+            const selectSelected = document.querySelectorAll('.select-selected');
+            
+            selectItems.forEach((item, index) => {
+                if (element !== selectSelected[index]) {
+                    item.classList.add('select-hide');
+                    selectSelected[index].classList.remove('select-arrow-active');
+                }
+            });
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', closeAllSelect);
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initCustomSelects);
+
         // Create floating hearts
         function createFloatingHearts() {
             const heartBg = document.getElementById('heartBg');
@@ -636,15 +890,20 @@
             const successMessage = document.getElementById('successMessage');
             
             // Get form values
+            const response = document.getElementById('response');
+            const responseText = response.options[response.selectedIndex].text;
             const name = document.getElementById('name').value;
             const date = document.getElementById('date').value;
             const color = document.getElementById('color');
             const colorText = color.options[color.selectedIndex].text;
             const food = document.getElementById('food');
             const foodText = food.options[food.selectedIndex].text;
+            const drink = document.getElementById('drink');
+            const drinkText = drink.options[drink.selectedIndex].text;
             const message = document.getElementById('message').value;
             
             // Populate receipt
+            document.getElementById('receiptResponse').textContent = responseText;
             document.getElementById('receiptName').textContent = name;
             document.getElementById('receiptDate').textContent = new Date(date).toLocaleDateString('en-US', { 
                 weekday: 'long', 
@@ -654,6 +913,7 @@
             });
             document.getElementById('receiptColor').textContent = colorText;
             document.getElementById('receiptFood').textContent = foodText;
+            document.getElementById('receiptDrink').textContent = drinkText;
             
             if (message.trim()) {
                 document.getElementById('messageItem').style.display = 'flex';
@@ -671,10 +931,12 @@
 
             // In a real application, you would send this data to a server
             console.log({
+                response: response.value,
                 name: name,
                 date: date,
                 color: color.value,
                 food: food.value,
+                drink: drink.value,
                 message: message
             });
         });
